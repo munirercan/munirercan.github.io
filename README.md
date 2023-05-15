@@ -1,5 +1,5 @@
 
-Vision Transformer: A step by step simple explanation
+Vision Transformer: A step by step simple explanation. See how your tensor should look like after each step.
 
 Let's make a simple and lucid explanation for ViT that is described in Dosovitskiy et al paper:
 
@@ -22,9 +22,9 @@ nn.Linear(49,128)
 
 64x16x49 => 64x16x128
 
-3. Add learnable class embedding. This is an extra patch appended to the beginning of the input. Size is the same as other patches, 1x28. Create 64 of them since batch size is 64, one for each image
+3. Add learnable class embedding. This is an extra patch appended to the beginning of the input. Size is the same as other patches, 1x28. Create 64 of them since batch size is 64, one for each image: 64x1x128
 
-64x16x128 append as first row 64x1x128 = 64x17x128
+64x16x128, append class embeddings as first row 64x1x128 = 64x17x128
 
 4. Add position embedding. Sum position embedding with current input (this is not append, this is sum).
 

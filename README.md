@@ -8,6 +8,8 @@ Let's make a simple and lucid explanation for ViT that is described in Dosovitsk
 
 Transformers firstly used in NLP tasks and achieved a great success. Now, we will see how we can extend it to use for image recognition. Let's start to make it understandable for everyone.
 
+<img src=https://learnopencv.com/wp-content/uploads/2023/02/image-9.png />
+
 ## Steps
 
 <font color=red> **1.** </font> We have images, for example size of 28x28 (one channel for simplicity). Patches are created from each image. What is a patch?

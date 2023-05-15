@@ -57,7 +57,7 @@ Note that query, key and value are not equal, they pass through different linear
 
 From now on we will use query, key and value in our coding. Input x has done its job, we no more need it.
 
-7. Multihead attention is used in the paper. Lets create our heads, think we have 4 heads. Query, key and value will be divided into 4 heads, then what we get:
+**7.** Multihead attention is used in the paper. Lets create our heads, think we have 4 heads. Query, key and value will be divided into 4 heads, then what we get:
 
 For query, head1 is 64x17x32, head2 is 64x17x32, head3 is 64x17x32 and head4 is 64x17x32. Lets put all 4 heads into one matrix then 64x17x4x32. This is for query, do the same calculation for key and value.
 
@@ -77,35 +77,35 @@ size of value is 64x17x4x32
 
 Paper says heads are created by projection of input value. This is the same as seperating input into head counts.
 
-8. Each head applies self attention among patches. So lets bring patches together.
+**8.** Each head applies self attention among patches. So lets bring patches together.
 
 64x17x4x32 => 64x4x17x32
 
 17x32 is the embedding of each image. Since we have 4 heads, we have 4 different embeddings for each image.
 
-9. It is time to calculate weights.
+**9.** It is time to calculate weights.
 
 A = softmax(query * transpose(key) / sqrt(32))
 
 64x4x17x32 * 64x4x32x17 => 64x4x17x17
 
-10. Now the weighted sum.
+**10.** Now the weighted sum.
 
 A * value
 
 64x4x17x17 * 64x4x17x32 => 64x4x17x32
 
-11. All heads have done the calculations, lets concatanate the heads.
+**11.** All heads have done the calculations, lets concatanate the heads.
 
 We have four heads 64x4x17x32, concatanate their outputs: 64x17x128
 
-12. Add residuals : Add value at step 4
+**12.** Add residuals : Add value at step 4
 
 64x17x128 sum 64x17x128 => 64x17x128
 
-13. Apply layer normalization: 64x17x128
+**13.** Apply layer normalization: 64x17x128
 
-14. Create a Multilayer Perceptron and apply it.
+**14.** Create a Multilayer Perceptron and apply it.
 
     nn.Linear(128, 128 * 4)
 
@@ -117,10 +117,10 @@ We have four heads 64x4x17x32, concatanate their outputs: 64x17x128
 
 Dimensions do not change: 64x17x128
 
-15. Add residuals from result of step 12: 64x17x128
+**15.** Add residuals from result of step 12: 64x17x128
 Tranformer Encoder ends here
 
-16. Learnable class embedding that we added to our input at step 3 is used for image representation. It is the first row in our input.
+**16.** Learnable class embedding that we added to our input at step 3 is used for image representation. It is the first row in our input.
 
 cls = out[:,0]
 

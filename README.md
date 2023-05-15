@@ -59,7 +59,7 @@ From now on we will use query, key and value in our coding. Input x has done its
 
 7. Multihead attention is used in the paper. Lets create our heads, think we have 4 heads. Query, key and value will be divided into 4 heads, then what we get:
 
-For query, head-1 is 64x17x32, head-2 is 64x17x32, head-3 is 64x17x32 and head-4 is 64x17x32. Lets put all 4 heads into one matrix then 64x17x4x25. This is for query, do the same calculation for key and value.
+For query, head1 is 64x17x32, head2 is 64x17x32, head3 is 64x17x32 and head4 is 64x17x32. Lets put all 4 heads into one matrix then 64x17x4x32. This is for query, do the same calculation for key and value.
 
 Then size of query is 64x17x4x32
 
@@ -81,7 +81,7 @@ Paper says heads are created by projection of input value. This is the same as s
 
 64x17x4x32 => 64x4x17x32
 
-17x32 is embedding of each image. Since we have 4 heads, we have 4 different embeddings for each image.
+17x32 is the embedding of each image. Since we have 4 heads, we have 4 different embeddings for each image.
 
 9. It is time to calculate weights.
 
@@ -132,7 +132,7 @@ Apply MLP Head. If there are 10 classes
 
     nn.Linear(128, 10)
 
-Output is 64x10. We have 10 class values for each image.
+Output is 64x10. Our batch size was 64 and we have 10 classes. Output has 10 class values for each image.
 
  
 

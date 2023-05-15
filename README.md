@@ -12,7 +12,7 @@ Transformers firstly used in NLP tasks and achieved a great success. Now, we wil
 
 ## Steps
 
-<font color="red"> **Step 1.** </font> We have an image, for example size of 28x28 (one channel for simplicity). Patches are created from each image. What is a patch? Patch is a 7x7 part from the image. If we divide our 28x28 image into size of 7x7 patches, we will end up with 16 patches.
+<font color="#0969DA"> **Step 1.** </font> We have an image, for example size of 28x28 (one channel for simplicity). Patches are created from each image. What is a patch? Patch is a 7x7 part from the image. If we divide our 28x28 image into size of 7x7 patches, we will end up with 16 patches.
 
 28x28 => 16x49
 

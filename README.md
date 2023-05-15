@@ -6,9 +6,10 @@ Let's make a simple and lucid explanation for ViT that is described in Dosovitsk
     Dosovitskiy, A., Beyer, L., Kolesnikov, A., Weissenborn, D., Zhai, X., Unterthiner, T., Dehghani, M., Minderer, M., Heigold, G., Gelly, S. and Uszkoreit, J., 2020. An image is worth 16x16 words: Transformers for image recognition at scale. ICLR 2021. https://arxiv.org/abs/2010.11929
 
 Transformers firstly used in NLP tasks and achieved a great success. Now, we will see how we can extend it to use for image recognition. Let's start to make it understandable for everyone.
-Steps
 
-**1.** We have images, for example size of 28x28 (one channel for simplicity). Patches are created from each image. What is a patch?
+## Steps
+
+<font color=red>**1.**</font> We have images, for example size of 28x28 (one channel for simplicity). Patches are created from each image. What is a patch?
 
 28x28 => 16x49
 

@@ -12,25 +12,25 @@ Transformers firstly used in NLP tasks and achieved a great success. Now, we wil
 
 ## Steps
 
-<font color="red"> **Step 1.** </font> We have images, for example size of 28x28 (one channel for simplicity). Patches are created from each image. What is a patch?
+<font color="red"> **Step 1.** </font> We have an image, for example size of 28x28 (one channel for simplicity). Patches are created from each image. What is a patch? Patch is a 7x7 part from the image. If we divide our 28x28 image into size of 7x7 patches, we will end up with 16 patches.
 
 28x28 => 16x49
 
-if batch size is 64 then our input is now 64x16x49
+if we select batch size as 64 then our input is now 64x16x49. Batch is the number of images that will be processed in each iteration.
 
 Batch Vs Patch, Do not get confused.
 
-**2.** Embedding. Patches which have length of 49 are projected into new dimensions lets say 128 by a linear layer. So 49 => 128
+**Step 2.** Embedding. Patches which have length of 49 are projected into new dimensions lets say 128 by a linear layer. So 49 => 128
 
 nn.Linear(49,128)
 
 64x16x49 => 64x16x128
 
-**3.** Add learnable class embedding. This is an extra patch appended to the beginning of the input. Size is the same as other patches, 1x28. Create 64 of them since batch size is 64, one for each image: 64x1x128
+**Step 3.** Add learnable class embedding. This is an extra patch appended to the beginning of the input. Size is the same as other patches, 1x28. Create 64 of them since batch size is 64, one for each image: 64x1x128
 
 64x16x128, append class embeddings as first row 64x1x128 = 64x17x128
 
-**4.** Add position embedding. Sum position embedding with current input (this is not append, this is sum).
+**STEP 4.** Add position embedding. Sum position embedding with current input (this is not append, this is sum).
 
 64x17x128 sum 64x17x128 => 64x17x128
 

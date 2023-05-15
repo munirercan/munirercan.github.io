@@ -20,26 +20,26 @@ if we select batch size as 64 then our input is now 64x16x49. Batch is the numbe
 
 Batch Vs Patch, Do not get confused.
 
-**Step 2.** Embedding. Patches which have length of 49 are projected into new dimensions lets say 128 by a linear layer. So 49 => 128
+:foot: **2.** Embedding. Patches which have length of 49 are projected into new dimensions lets say 128 by a linear layer. So 49 => 128
 
 nn.Linear(49,128)
 
 64x16x49 => 64x16x128
 
-**Step 3.** Add learnable class embedding. This is an extra patch appended to the beginning of the input. Size is the same as other patches, 1x28. Create 64 of them since batch size is 64, one for each image: 64x1x128
+:foot: **3.** Add learnable class embedding. This is an extra patch appended to the beginning of the input. Size is the same as other patches, 1x28. Create 64 of them since batch size is 64, one for each image: 64x1x128
 
 64x16x128, append class embeddings as first row 64x1x128 = 64x17x128
 
-**STEP 4.** Add position embedding. Sum position embedding with current input (this is not append, this is sum).
+:foot: **4.** Add position embedding. Sum position embedding with current input (this is not append, this is sum).
 
 64x17x128 sum 64x17x128 => 64x17x128
 
 Input is ready for encoder.
 Transformer Encoder starts here
 
-**5.** Apply Layer Normalization, dimensions do not change: 64x17x128
+:foot: **5.** Apply Layer Normalization, dimensions do not change: 64x17x128
 
-**6.** Create query, key and value matrices. These are created by linear projection of current input.
+:foot: **6.** Create query, key and value matrices. These are created by linear projection of current input.
 
 Create Linear layers
 
@@ -61,7 +61,7 @@ Note that query, key and value are not equal, they pass through different linear
 
 From now on we will use query, key and value in our coding. Input x has done its job, we no more need it.
 
-**7.** Multihead attention is used in the paper. Lets create our heads, think we have 4 heads. Query, key and value will be divided into 4 heads, then what we get:
+:foot: **7.** Multihead attention is used in the paper. Lets create our heads, think we have 4 heads. Query, key and value will be divided into 4 heads, then what we get:
 
 For query, head1 is 64x17x32, head2 is 64x17x32, head3 is 64x17x32 and head4 is 64x17x32. Lets put all 4 heads into one matrix then 64x17x4x32. This is for query, do the same calculation for key and value.
 
@@ -81,35 +81,35 @@ size of value is 64x17x4x32
 
 Paper says heads are created by projection of input value. This is the same as seperating input into head counts.
 
-**8.** Each head applies self attention among patches. So lets bring patches together.
+:foot: **8.** Each head applies self attention among patches. So lets bring patches together.
 
 64x17x4x32 => 64x4x17x32
 
 17x32 is the embedding of each image. Since we have 4 heads, we have 4 different embeddings for each image.
 
-**9.** It is time to calculate weights.
+:foot: **9.** It is time to calculate weights.
 
 A = softmax(query * transpose(key) / sqrt(32))
 
 64x4x17x32 * 64x4x32x17 => 64x4x17x17
 
-**10.** Now the weighted sum.
+:foot: **10.** Now the weighted sum.
 
 A * value
 
 64x4x17x17 * 64x4x17x32 => 64x4x17x32
 
-**11.** All heads have done the calculations, lets concatanate the heads.
+:foot: **11.** All heads have done the calculations, lets concatanate the heads.
 
 We have four heads 64x4x17x32, concatanate their outputs: 64x17x128
 
-**12.** Add residuals : Add value at step 4
+:foot: **12.** Add residuals : Add value at step 4
 
 64x17x128 sum 64x17x128 => 64x17x128
 
-**13.** Apply layer normalization: 64x17x128
+:foot: **13.** Apply layer normalization: 64x17x128
 
-**14.** Create a Multilayer Perceptron and apply it.
+:foot: **14.** Create a Multilayer Perceptron and apply it.
 
     nn.Linear(128, 128 * 4)
 
@@ -121,10 +121,10 @@ We have four heads 64x4x17x32, concatanate their outputs: 64x17x128
 
 Dimensions do not change: 64x17x128
 
-**15.** Add residuals from result of step 12: 64x17x128
+:foot: **15.** Add residuals from result of step 12: 64x17x128
 Tranformer Encoder ends here
 
-**16.** Learnable class embedding that we added to our input at step 3 is used for image representation. It is the first row in our input.
+:foot: **16.** Learnable class embedding that we added to our input at step 3 is used for image representation. It is the first row in our input.
 
 cls = out[:,0]
 

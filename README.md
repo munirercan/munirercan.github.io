@@ -8,7 +8,7 @@ Let's make a simple and lucid explanation for ViT that is described in Dosovitsk
 Transformers firstly used in NLP tasks and achieved a great success. Now, we will see how we can extend it to use for image recognition. Let's start to make it understandable for everyone.
 Steps
 
-1. We have images, for example size of 28x28 (one channel for simplicity). Patches are created from each image. What is a patch?
+**1.** We have images, for example size of 28x28 (one channel for simplicity). Patches are created from each image. What is a patch?
 
 28x28 => 16x49
 
@@ -16,26 +16,26 @@ if batch size is 64 then our input is now 64x16x49
 
 Batch Vs Patch, Do not get confused.
 
-2. Embedding. Patches which have length of 49 are projected into new dimensions lets say 128 by a linear layer. So 49 => 128
+**2.** Embedding. Patches which have length of 49 are projected into new dimensions lets say 128 by a linear layer. So 49 => 128
 
 nn.Linear(49,128)
 
 64x16x49 => 64x16x128
 
-3. Add learnable class embedding. This is an extra patch appended to the beginning of the input. Size is the same as other patches, 1x28. Create 64 of them since batch size is 64, one for each image: 64x1x128
+**3.** Add learnable class embedding. This is an extra patch appended to the beginning of the input. Size is the same as other patches, 1x28. Create 64 of them since batch size is 64, one for each image: 64x1x128
 
 64x16x128, append class embeddings as first row 64x1x128 = 64x17x128
 
-4. Add position embedding. Sum position embedding with current input (this is not append, this is sum).
+**4.** Add position embedding. Sum position embedding with current input (this is not append, this is sum).
 
 64x17x128 sum 64x17x128 => 64x17x128
 
 Input is ready for encoder.
 Transformer Encoder starts here
 
-5. Apply Layer Normalization, dimensions do not change: 64x17x128
+**5.** Apply Layer Normalization, dimensions do not change: 64x17x128
 
-6. Create query, key and value matrices. These are created by linear projection of current input.
+**6.** Create query, key and value matrices. These are created by linear projection of current input.
 
 Create Linear layers
 

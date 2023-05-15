@@ -9,7 +9,7 @@ Transformers firstly used in NLP tasks and achieved a great success. Now, we wil
 
 ## Steps
 
-<font color=red>**1.**</font> We have images, for example size of 28x28 (one channel for simplicity). Patches are created from each image. What is a patch?
+<font color=red> **1.** </font> We have images, for example size of 28x28 (one channel for simplicity). Patches are created from each image. What is a patch?
 
 28x28 => 16x49
 
